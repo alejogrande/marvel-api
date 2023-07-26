@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:marvel_api/data/datasource/remote_datasource.dart';
 import 'package:marvel_api/data/exception.dart';
 import 'package:marvel_api/data/failure.dart';
-import 'package:marvel_api/domain/repositories/marver_repository.dart';
+import 'package:marvel_api/domain/repositories/marvel_repository.dart';
 
 
 class MarvelRepositoryImpl implements MarvelRepository {
