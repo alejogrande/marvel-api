@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       routes: appRoutes,
       // initialRoute: ,
       // theme: theme(context),
-      home: RootPage(),
+      home: const RootPage(),
     );
   }
 }

@@ -6,8 +6,11 @@ class RemoteDataSource {
 
   RemoteDataSource(
       {required String baseUrl,
+      required String hash,
       required int connectTimeout,
-      required int receiveTimeOut}) {
+      required int receiveTimeOut,
+      required int ts,
+      }) {
     _optionsApi = BaseOptions(
         baseUrl: baseUrl,
         responseType: ResponseType.json,
