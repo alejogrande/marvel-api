@@ -1,5 +1,5 @@
 baseUrl: "https://gateway.marvel.com:443/v1/public"
-apiKey: "AIzaSyCg3BHJXNLYrNXqUlhAEnRX41f42pRn_mY"
+apiKey: "8ba95555e3a9c3de9f4d8ce2423d22da"
 hash: "fc221941ec9a1afab7399d338fe4e020"
 connectTimeOut: 120000
 receiveTimeOut: 120000

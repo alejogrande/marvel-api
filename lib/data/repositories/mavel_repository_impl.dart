@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:marvel_api/data/datasource/remote_datasource.dart';
 import 'package:marvel_api/data/exception.dart';
 import 'package:marvel_api/data/failure.dart';
+import 'package:marvel_api/domain/entities/characters_entity.dart';
 import 'package:marvel_api/domain/repositories/marvel_repository.dart';
 
 
@@ -13,7 +14,7 @@ class MarvelRepositoryImpl implements MarvelRepository {
   MarvelRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, dynamic>> getCharacters() async {
+  Future<Either<Failure, Characters>> getCharacters() async {
     try {
       final result = await remoteDataSource.getCharacters();
       return Right(result);

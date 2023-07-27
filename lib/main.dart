@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
 import 'package:marvel_api/ui/pages/comics/bloc/comics_bloc.dart';
@@ -9,8 +10,10 @@ import 'package:marvel_api/ui/routes.dart';
 import 'dependency_injection/injection.dart' as di;
 
 void main() {
-  di.init();
+  
   WidgetsFlutterBinding.ensureInitialized();
+  di.init();
+  // HttpOverrides.global = MyHttpOverrides();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (context) => NavigationCubit(),
@@ -21,6 +24,14 @@ void main() {
   ], child: const MyApp()));
 }
 
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

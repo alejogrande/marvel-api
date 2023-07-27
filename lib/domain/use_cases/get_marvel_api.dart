@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:marvel_api/data/failure.dart';
+import 'package:marvel_api/domain/entities/characters_entity.dart';
 import 'package:marvel_api/domain/repositories/marvel_repository.dart';
 
 
@@ -8,7 +9,7 @@ class GetMarvelApi {
 
   GetMarvelApi(this.repository);
 
-  Future<Either<Failure, dynamic>> getCharacters() {
+  Future<Either<Failure, Characters>> getCharacters() {
     return repository.getCharacters();
   }
 

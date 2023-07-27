@@ -15,7 +15,7 @@ import 'package:yaml/yaml.dart';
 final locator = GetIt.instance;
 
 Future<void> init() async {
-  final configFile = await rootBundle.loadString('assets/app_config.yaml');
+  final configFile = await rootBundle.loadString('lib/config/app_config.yaml');
   final YamlMap yamlMap = loadYaml(configFile);
   late AppConfig appConfig = AppConfigModel.fromMap(yamlMap);
   // bloc
@@ -42,6 +42,7 @@ Future<void> init() async {
         receiveTimeOut: appConfig.receiveTimeOut,
         hash: appConfig.hash,
         ts: appConfig.ts,
+        apiKey: appConfig.apiKey
       ));
 
   // external
