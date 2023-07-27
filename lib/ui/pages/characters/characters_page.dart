@@ -39,9 +39,7 @@ class _CharacterPageState extends State<CharacterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          context.read<CharactersBloc>().add(LoadCharacters());
-        }),
+        
         appBar: AppBar(
           title: const Text("Buscador"),
         ),

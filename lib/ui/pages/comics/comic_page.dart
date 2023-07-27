@@ -39,9 +39,7 @@ class _ComicPageState extends State<ComicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          context.read<ComicsBloc>().add(LoadComics());
-        }),
+ 
         appBar: AppBar(
           title: const Text("Buscador"),
         ),
