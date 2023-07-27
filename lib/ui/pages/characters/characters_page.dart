@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_api/domain/entities/characters_entity.dart';
 import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
-import 'package:marvel_api/ui/pages/comics/widgets/gridview_characters.dart';
+import 'package:marvel_api/ui/pages/characters/widgets/gridview_characters.dart';
 
 class CharacterPage extends StatefulWidget {
   const CharacterPage({Key? key}) : super(key: key);
@@ -21,13 +21,19 @@ class _CharacterPageState extends State<CharacterPage> {
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        context.read<CharactersBloc>().add(LoadCharacters());
+        if (items.length < limit) {
+          context
+              .read<CharactersBloc>()
+              .add(LoadCharacters(offset: items.length,name: _searchController.text));
+        }
       }
     });
   }
 
   List<ResultCharacters?> items = [];
+  int limit = 0;
   final ScrollController _scrollController = ScrollController();
+  final TextEditingController _searchController = TextEditingController(text:"");
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +53,16 @@ class _CharacterPageState extends State<CharacterPage> {
                   padding: const EdgeInsets.all(20),
                   child: TextField(
                     onChanged: (value) {
-                      // context.read<SearchBloc>().add(LoadSearch(value));
+                      limit=0;
+                      items=[];
+                      context.read<CharactersBloc>().add(LoadSearchCharacters(name:value));
                     },
+                    controller: _searchController,
                     // textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       hintText: 'Buscar...',
                       filled: true,
-                      fillColor: Colors.black,
+                      fillColor: Colors.green,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
@@ -74,6 +83,7 @@ class _CharacterPageState extends State<CharacterPage> {
                     if (state is CharactersHasData) {
                       items.addAll(state.data?.data?.results
                           as Iterable<ResultCharacters?>);
+                      limit = state.data!.data!.total!;
                     }
                   },
                   builder: (context, state) {

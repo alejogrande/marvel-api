@@ -9,8 +9,8 @@ class GetMarvelApi {
 
   GetMarvelApi(this.repository);
 
-  Future<Either<Failure, Characters>> getCharacters() {
-    return repository.getCharacters();
+  Future<Either<Failure, Characters>> getCharacters({int? offset,String? name}) {
+    return repository.getCharacters(offset: offset,name: name);
   }
 
   

@@ -4,5 +4,5 @@ import 'package:marvel_api/domain/entities/characters_entity.dart';
 
 
 abstract class MarvelRepository {
-  Future<Either<Failure, Characters>> getCharacters();
+  Future<Either<Failure, Characters>> getCharacters({int? offset, String? name});
 }

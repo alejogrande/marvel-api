@@ -65,7 +65,7 @@ class GridviewCharacters extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     Text(
-                                      e!.name!,
+                                      e.name!,
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],

@@ -22,7 +22,6 @@ class RemoteDataSource {
           'ts': ts,
           'hash': hash,
           'apikey': apiKey,
-          
         },
         headers: {
           'Content-Type': 'application/json',
@@ -49,11 +48,38 @@ class RemoteDataSource {
     }));
   }
 
-  Future<Characters> getCharacters() async {
-    final apiResponse = await _client.get('/characters').catchError((error) {
+  Future<Characters> getCharacters({int? offset, String? name}) async {
+    final Map<String, dynamic> queryParams = {
+      'offset': offset ?? 0,
+    };
+    if (name != null && name.isNotEmpty) {
+      queryParams['nameStartsWith'] = name;
+    }
+    final apiResponse = await _client
+        .get('/characters', queryParameters: queryParams)
+        .catchError((error) {
       return error.response;
     });
-     if (apiResponse.statusCode == 200) {
+    if (apiResponse.statusCode == 200) {
+      return CharactersModel.fromJson((apiResponse.data));
+    } else {
+      throw ServerException();
+    }
+  }
+
+    Future<Characters> getComics({int? offset, String? name}) async {
+    final Map<String, dynamic> queryParams = {
+      'offset': offset ?? 0,
+    };
+    if (name != null && name.isNotEmpty) {
+      queryParams['titleStartsWith'] = name;
+    }
+    final apiResponse = await _client
+        .get('/comics', queryParameters: queryParams)
+        .catchError((error) {
+      return error.response;
+    });
+    if (apiResponse.statusCode == 200) {
       return CharactersModel.fromJson((apiResponse.data));
     } else {
       throw ServerException();

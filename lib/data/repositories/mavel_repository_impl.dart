@@ -14,9 +14,9 @@ class MarvelRepositoryImpl implements MarvelRepository {
   MarvelRepositoryImpl({required this.remoteDataSource});
 
   @override
-  Future<Either<Failure, Characters>> getCharacters() async {
+  Future<Either<Failure, Characters>> getCharacters({int?offset,String? name}) async {
     try {
-      final result = await remoteDataSource.getCharacters();
+      final result = await remoteDataSource.getCharacters(offset: offset,name: name);
       return Right(result);
     } on ServerException {
       return const Left(ServerFailure(''));
