@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_api/domain/entities/characters_entity.dart';
-import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
-import 'package:marvel_api/ui/pages/characters/widgets/gridview_characters.dart';
+import 'package:marvel_api/domain/entities/comics_entity.dart';
+import 'package:marvel_api/ui/pages/comics/bloc/comics_bloc.dart';
+import 'package:marvel_api/ui/pages/comics/widgets/gridview_comics.dart';
+
 
 class ComicPage extends StatefulWidget {
   const ComicPage({Key? key}) : super(key: key);
@@ -16,21 +17,21 @@ class _ComicPageState extends State<ComicPage> {
   @override
   void initState() {
     super.initState();
-    context.read<CharactersBloc>().add(LoadCharacters());
+    context.read<ComicsBloc>().add(LoadComics());
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (items.length < limit) {
           context
-              .read<CharactersBloc>()
-              .add(LoadCharacters(offset: items.length,name: _searchController.text));
+              .read<ComicsBloc>()
+              .add(LoadComics(offset: items.length,name: _searchController.text));
         }
       }
     });
   }
 
-  List<ResultCharacters?> items = [];
+  List<ResultComics?> items = [];
   int limit = 0;
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _searchController = TextEditingController(text:"");
@@ -39,7 +40,7 @@ class _ComicPageState extends State<ComicPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: FloatingActionButton(onPressed: () {
-          context.read<CharactersBloc>().add(LoadCharacters());
+          context.read<ComicsBloc>().add(LoadComics());
         }),
         appBar: AppBar(
           title: const Text("Buscador"),
@@ -55,7 +56,7 @@ class _ComicPageState extends State<ComicPage> {
                     onChanged: (value) {
                       limit=0;
                       items=[];
-                      context.read<CharactersBloc>().add(LoadSearchCharacters(name:value));
+                      context.read<ComicsBloc>().add(LoadSearchComics(name:value));
                     },
                     controller: _searchController,
                     // textAlign: TextAlign.center,
@@ -78,16 +79,16 @@ class _ComicPageState extends State<ComicPage> {
                     ),
                   ),
                 ),
-                BlocConsumer<CharactersBloc, CharactersState>(
+                BlocConsumer<ComicsBloc, ComicsState>(
                   listener: (context, state) {
-                    if (state is CharactersHasData) {
+                    if (state is ComicsHasData) {
                       items.addAll(state.data?.data?.results
-                          as Iterable<ResultCharacters?>);
+                          as Iterable<ResultComics?>);
                       limit = state.data!.data!.total!;
                     }
                   },
                   builder: (context, state) {
-                    return GridviewCharacters(
+                    return GridviewComics(
                         items: items, controller: _scrollController);
                   },
                 )

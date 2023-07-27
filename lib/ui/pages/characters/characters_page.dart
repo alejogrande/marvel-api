@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_api/domain/entities/characters_entity.dart';
 import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
 import 'package:marvel_api/ui/pages/characters/widgets/gridview_characters.dart';
+import 'package:marvel_api/ui/widgets/background_custom.dart';
 
 class CharacterPage extends StatefulWidget {
   const CharacterPage({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class _CharacterPageState extends State<CharacterPage> {
         ),
         body: Stack(
           children: [
-            //  / const BackgroundCustom(),
+              const BackgroundCustom(),
             Column(
               children: [
                 Padding(

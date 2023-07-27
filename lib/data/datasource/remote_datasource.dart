@@ -1,7 +1,11 @@
+// ignore_for_file: library_prefixes
+
 import 'package:dio/dio.dart';
 import 'package:marvel_api/data/exception.dart';
-import 'package:marvel_api/data/model/characters_model.dart';
+import 'package:marvel_api/data/model/characters_model.dart' as characterModel;
+import 'package:marvel_api/data/model/comics_model.dart' as comicModel;
 import 'package:marvel_api/domain/entities/characters_entity.dart';
+import 'package:marvel_api/domain/entities/comics_entity.dart';
 
 class RemoteDataSource {
   late BaseOptions _optionsApi;
@@ -61,13 +65,12 @@ class RemoteDataSource {
       return error.response;
     });
     if (apiResponse.statusCode == 200) {
-      return CharactersModel.fromJson((apiResponse.data));
+      return characterModel.CharactersModel.fromJson((apiResponse.data));
     } else {
       throw ServerException();
     }
   }
-
-    Future<Characters> getComics({int? offset, String? name}) async {
+    Future<Comics> getComics({int? offset, String? name}) async {
     final Map<String, dynamic> queryParams = {
       'offset': offset ?? 0,
     };
@@ -80,7 +83,9 @@ class RemoteDataSource {
       return error.response;
     });
     if (apiResponse.statusCode == 200) {
-      return CharactersModel.fromJson((apiResponse.data));
+       return comicModel.ComicsModel.fromJson((apiResponse.data));
+      
+  
     } else {
       throw ServerException();
     }
