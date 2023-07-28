@@ -54,10 +54,10 @@ class _CharacterPageState extends State<CharacterPage> {
                   child: TextField(
                     onChanged: (value) {
                       setState(() {
-                         limit = 0;
-                      items = [];
+                        limit = 0;
+                        items = [];
                       });
-                      
+
                       context
                           .read<CharactersBloc>()
                           .add(LoadSearchCharacters(name: value));
@@ -80,7 +80,7 @@ class _CharacterPageState extends State<CharacterPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
                       ),
-                       suffixIcon: _searchController.text.isNotEmpty
+                      suffixIcon: _searchController.text.isNotEmpty
                           ? IconButton(
                               icon: const Icon(
                                 Icons.clear,
@@ -93,9 +93,9 @@ class _CharacterPageState extends State<CharacterPage> {
                                   items = [];
                                 });
 
-                                context
-                          .read<CharactersBloc>()
-                          .add(LoadSearchCharacters(name:  _searchController.text));
+                                context.read<CharactersBloc>().add(
+                                    LoadSearchCharacters(
+                                        name: _searchController.text));
                               },
                             )
                           : null,
@@ -111,19 +111,11 @@ class _CharacterPageState extends State<CharacterPage> {
                     }
                   },
                   builder: (context, state) {
+                   
                     return GridviewCharacters(
                         items: items, controller: _scrollController);
                   },
                 )
-                // BlocBuilder<CharactersBloc, CharactersState>(
-                //   builder: (context, state) {
-
-                //     return state is CharactersHasData
-
-                //         ? GridviewCharacters(items: state.data?.data?.results)
-                //         : Container();
-                //   },
-                // ),
               ],
             )),
       ],

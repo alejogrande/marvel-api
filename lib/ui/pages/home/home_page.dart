@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                   )
-                  : Container();
+                  : const Center(child:  CircularProgressIndicator());
             },
           ),
         ),
