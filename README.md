@@ -33,11 +33,11 @@ A new Flutter project with [Marvel Comics api](https://developer.marvel.com/).
 
 <br>
 <p align="center">
-<img src="screenshot/Screenshot_1690543233.png" width="30%">
-<img src="screenshot/Screenshot_1690543242.png" width="30%">
-<img src="screenshot/Screenshot_1690543249.png" width="30%">
-<img src="screenshot/Screenshot_1690543273.png" width="30%">
-<img src="screenshot/Screenshot_1690543282.png" width="30%">
+<img src="screenshot/screenshot_0.png" width="30%">
+<img src="screenshot/screenshot_1.png" width="30%">
+<img src="screenshot/screenshot_2.png" width="30%">
+<img src="screenshot/screenshot_3.png" width="30%">
+<img src="screenshot/screenshot_4.png" width="30%">
   
 </p>
 
@@ -47,7 +47,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com/downloa
 
 ```
 # Clone this repository
-$ git clone [https://github.com/Appii00/Flutter-Bloc-Marvel-App](https://github.com/alejogrande/marvel-api)
+$ git clone https://github.com/alejogrande/marvel-api
 
 # Install dependencies
 $ flutter packages get
