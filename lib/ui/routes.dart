@@ -11,4 +11,5 @@ final Map<String, Widget Function(BuildContext)> appRoutes = {
   Routes.comics: (_) => const ComicPage(),
   Routes.characters: (_) => const CharacterPage(),
   Routes.root: (_) => const  RootPage(),
+  
 };

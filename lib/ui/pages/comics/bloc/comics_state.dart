@@ -4,9 +4,6 @@ abstract class ComicsState {}
 
 class ComicsInitial extends ComicsState {}
 
-
-
-
 class ComicsLoading extends ComicsState {}
 
 class ComicsError extends ComicsState {
