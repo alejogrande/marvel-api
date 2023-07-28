@@ -37,7 +37,7 @@ class GridviewCharacters extends StatelessWidget {
                               arguments: e);
                         },
                         child: Card(
-                          color: Colors.black,
+                          color: const Color.fromARGB(255, 19, 19, 19),
                           child: Stack(
                             fit: StackFit.expand,
                             children: [
