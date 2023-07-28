@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_api/domain/entities/comics_entity.dart';
+import 'package:marvel_api/utils/constans.dart';
 import 'package:marvel_api/utils/validators/validate_http.dart';
 
 class GridviewComics extends StatelessWidget {
@@ -16,7 +17,7 @@ class GridviewComics extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: Padding(
-        padding: const EdgeInsets.only(right:4.0),
+        padding: const EdgeInsets.only(right: 4.0),
         child: Scrollbar(
           thumbVisibility: true,
           controller: controller,
@@ -32,10 +33,8 @@ class GridviewComics extends StatelessWidget {
                       padding: const EdgeInsets.all(10),
                       child: GestureDetector(
                         onTap: () {
-                          // context
-                          //     .read<DetailBloc>()
-                          //     .add(LoadDetails(e.id!.toString()));
-                          // Navigator.pushNamed(context, Routes.detail);
+                          Navigator.pushNamed(context, Routes.comicDetail,
+                              arguments: e);
                         },
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(2),
@@ -46,17 +45,21 @@ class GridviewComics extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: e!.thumbnail?.path != null
-                                        ? Container(
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                                image: DecorationImage(
-                                              image: CachedNetworkImageProvider(
-                                                Validators().validateAndConvertToHttps(
-                                                    "${e.thumbnail!.path!}.${e.thumbnail!.extension!}"),
-                                              ),
-                                              fit: BoxFit.cover,
-                                            )),
-                                          )
+                                        ? Hero(
+                                          tag: "${e.id}",
+                                          child: Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                image: CachedNetworkImageProvider(
+                                                  Validators()
+                                                      .validateAndConvertToHttps(
+                                                          "${e.thumbnail!.path!}.${e.thumbnail!.extension!}"),
+                                                ),
+                                                fit: BoxFit.cover,
+                                              )),
+                                            ),
+                                        )
                                         : Container(),
                                   ),
                                 ],
@@ -73,8 +76,7 @@ class GridviewComics extends StatelessWidget {
                                       colors: [
                                         Colors
                                             .black, // Color negro en la parte inferior
-                                            Colors
-                                            .black,
+                                        Colors.black,
                                         Colors
                                             .transparent, // Color transparente en la parte superior
                                       ],
@@ -82,11 +84,12 @@ class GridviewComics extends StatelessWidget {
                                   ),
                                   // height: 20,
                                   child: Column(
-                                     verticalDirection: VerticalDirection.up,
+                                    verticalDirection: VerticalDirection.up,
                                     children: [
                                       Text(
                                         e.title!,
-                                        style: const TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                         maxLines: 2,
                                         // overflow: TextOverflow.ellipsis,
                                       ),

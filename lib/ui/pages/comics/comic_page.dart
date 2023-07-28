@@ -61,6 +61,7 @@ class _ComicPageState extends State<ComicPage> {
                           .read<ComicsBloc>()
                           .add(LoadSearchComics(name: value));
                     },
+                    focusNode: FocusNode(),
                     controller: _searchController,
                     // textAlign: TextAlign.center,
                     decoration: InputDecoration(
@@ -114,15 +115,6 @@ class _ComicPageState extends State<ComicPage> {
                         items: items, controller: _scrollController);
                   },
                 )
-                // BlocBuilder<CharactersBloc, CharactersState>(
-                //   builder: (context, state) {
-
-                //     return state is CharactersHasData
-
-                //         ? GridviewCharacters(items: state.data?.data?.results)
-                //         : Container();
-                //   },
-                // ),
               ],
             )),
       ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_api/ui/widgets/appbar_custom.dart';
 import 'package:marvel_api/ui/widgets/background_custom.dart';
 import 'package:marvel_api/utils/constans.dart';
 
@@ -28,7 +27,6 @@ class _SplashPageState extends State<SplashPage> {
         const BackgroundCustom(),
         Scaffold(
           backgroundColor: Colors.transparent,
-         
           body: Container(),
         ),
       ],

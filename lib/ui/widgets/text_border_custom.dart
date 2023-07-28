@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
 
 class TextBorderCustom extends StatelessWidget {
   final String text;
+  final double? fontSize;
   const TextBorderCustom({
     required this.text,
+    this.fontSize,
     super.key,
   });
 
@@ -16,18 +17,18 @@ class TextBorderCustom extends StatelessWidget {
           text,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: fontSize ?? 18,
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 3.0
               ..color = Colors.black,
           ),
         ),
-         Text(
+        Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: fontSize ?? 18,
             color: Colors.white,
           ),
         ),

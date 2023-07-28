@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_api/domain/entities/characters_entity.dart';
+import 'package:marvel_api/utils/constans.dart';
 import 'package:marvel_api/utils/validators/validate_http.dart';
 
 class GridviewCharacters extends StatelessWidget {
@@ -32,10 +33,8 @@ class GridviewCharacters extends StatelessWidget {
                       padding: const EdgeInsets.all(20),
                       child: GestureDetector(
                         onTap: () {
-                          // context
-                          //     .read<DetailBloc>()
-                          //     .add(LoadDetails(e.id!.toString()));
-                          // Navigator.pushNamed(context, Routes.detail);
+                          Navigator.pushNamed(context, Routes.characterDetail,
+                              arguments: e);
                         },
                         child: Card(
                           color: Colors.black,
@@ -44,23 +43,26 @@ class GridviewCharacters extends StatelessWidget {
                             children: [
                               Column(
                                 children: [
-                                  Container(
-                                    margin: const EdgeInsets.all(8),
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 4.0,
-                                      ),
-                                      shape: BoxShape.circle,
-                                      color: Colors.white,
-                                      image: DecorationImage(
-                                        image: CachedNetworkImageProvider(
-                                          Validators().validateAndConvertToHttps(
-                                              "${e!.thumbnail!.path!}.${e.thumbnail!.extension!}"),
+                                  Hero(
+                                    tag: "${e!.id}",
+                                    child: Container(
+                                      margin: const EdgeInsets.all(8),
+                                      width: 100,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 4.0,
                                         ),
-                                        fit: BoxFit.cover,
+                                        shape: BoxShape.circle,
+                                        color: Colors.white,
+                                        image: DecorationImage(
+                                          image: CachedNetworkImageProvider(
+                                            Validators().validateAndConvertToHttps(
+                                                "${e.thumbnail!.path!}.${e.thumbnail!.extension!}"),
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
