@@ -22,7 +22,7 @@ class RootPageState extends State<RootPage> {
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.grey[900],
             fixedColor: Colors.red,
             unselectedItemColor: Colors.white,
             currentIndex: state.index,

@@ -53,8 +53,11 @@ class _CharacterPageState extends State<CharacterPage> {
                   padding: const EdgeInsets.all(20),
                   child: TextField(
                     onChanged: (value) {
-                      limit = 0;
+                      setState(() {
+                         limit = 0;
                       items = [];
+                      });
+                      
                       context
                           .read<CharactersBloc>()
                           .add(LoadSearchCharacters(name: value));
@@ -62,9 +65,9 @@ class _CharacterPageState extends State<CharacterPage> {
                     controller: _searchController,
                     // textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      hintText: 'Buscar...',
+                      hintText: 'Search...',
                       filled: true,
-                      fillColor: Colors.green,
+                      fillColor: Colors.grey[400],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
@@ -77,6 +80,25 @@ class _CharacterPageState extends State<CharacterPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
                       ),
+                       suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(
+                                Icons.clear,
+                                color: Colors.black87,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.text = '';
+                                  limit = 0;
+                                  items = [];
+                                });
+
+                                context
+                          .read<CharactersBloc>()
+                          .add(LoadSearchCharacters(name:  _searchController.text));
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),

@@ -40,11 +40,10 @@ class _ComicPageState extends State<ComicPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      
       children: [
         const BackgroundCustom(),
         Scaffold(
-          backgroundColor: Colors.transparent,
+            backgroundColor: Colors.transparent,
             appBar: const CustomAppBar(
               title: "COMICS",
             ),
@@ -54,8 +53,10 @@ class _ComicPageState extends State<ComicPage> {
                   padding: const EdgeInsets.all(20),
                   child: TextField(
                     onChanged: (value) {
-                      limit = 0;
-                      items = [];
+                      setState(() {
+                        limit = 0;
+                        items = [];
+                      });
                       context
                           .read<ComicsBloc>()
                           .add(LoadSearchComics(name: value));
@@ -63,9 +64,9 @@ class _ComicPageState extends State<ComicPage> {
                     controller: _searchController,
                     // textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      hintText: 'Buscar...',
+                      hintText: 'Search...',
                       filled: true,
-                      fillColor: Colors.green,
+                      fillColor: Colors.grey[400],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
@@ -78,6 +79,25 @@ class _ComicPageState extends State<ComicPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
                       ),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(
+                                Icons.clear,
+                                color: Colors.black87,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.text = '';
+                                  limit = 0;
+                                  items = [];
+                                });
+
+                                context
+                                    .read<ComicsBloc>()
+                                    .add(LoadSearchComics());
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),
