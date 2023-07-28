@@ -33,11 +33,11 @@ A new Flutter project with [Marvel Comics api](https://developer.marvel.com/).
 
 <br>
 <p align="center">
-<img src="screenshot/screenshot_1690543233.png" width="30%">
-<img src="screenshot/screenshot_1690543242.png" width="30%">
-<img src="screenshot/screenshot_1690543249.png" width="30%">
-<img src="screenshot/screenshot_1690543273.png" width="30%">
-<img src="screenshot/screenshot_1690543282.png" width="30%">
+<img src="screenshot/Screenshot_1690543233.png" width="30%">
+<img src="screenshot/Screenshot_1690543242.png" width="30%">
+<img src="screenshot/Screenshot_1690543249.png" width="30%">
+<img src="screenshot/Screenshot_1690543273.png" width="30%">
+<img src="screenshot/Screenshot_1690543282.png" width="30%">
   
 </p>
 
