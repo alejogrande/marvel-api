@@ -9,6 +9,7 @@ A new Flutter project with [Marvel Comics api](https://developer.marvel.com/).
 
 </br>
 </br>
+
 ## version of flutter and Dart
  - Flutter 3.10.6 
  - Dart 3.0.6 
@@ -32,11 +33,11 @@ A new Flutter project with [Marvel Comics api](https://developer.marvel.com/).
 
 <br>
 <p align="center">
-<img src="Screenshot_1690543233.jpg" width="30%">
-<img src="Screenshot_1690543242.jpg" width="30%">
-<img src="Screenshot_1690543249.jpg" width="30%">
-<img src="Screenshot_1690543273.jpg" width="30%">
-<img src="Screenshot_1690543282.jpg" width="30%">
+<img src="screenshot/screenshot_1690543233.jpg" width="30%">
+<img src="screenshot/screenshot_1690543242.jpg" width="30%">
+<img src="screenshot/screenshot_1690543249.jpg" width="30%">
+<img src="screenshot/screenshot_1690543273.jpg" width="30%">
+<img src="screenshot/screenshot_1690543282.jpg" width="30%">
   
 </p>
 
