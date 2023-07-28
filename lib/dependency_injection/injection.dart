@@ -10,6 +10,7 @@ import 'package:marvel_api/domain/use_cases/get_marvel_api.dart';
 import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
 import 'package:marvel_api/ui/pages/comics/bloc/comics_bloc.dart';
 import 'package:marvel_api/ui/pages/home/bloc/home_bloc.dart';
+
 import 'package:yaml/yaml.dart';
 
 final locator = GetIt.instance;
@@ -19,12 +20,13 @@ Future<void> init() async {
   final YamlMap yamlMap = loadYaml(configFile);
   late AppConfig appConfig = AppConfigModel.fromMap(yamlMap);
   // bloc
-  locator.registerFactory(() => HomeBloc(locator()));
+
   locator.registerFactory(() => CharactersBloc(locator()));
   locator.registerFactory(() => ComicsBloc(locator()));
+  locator.registerFactory(() => HomeBloc(locator()));
 
   // cubit
-  // locator.registerFactory(() => MoviesGenresBloc(locator()));
+
 
   // usecase
   locator.registerLazySingleton(() => GetMarvelApi(locator()));

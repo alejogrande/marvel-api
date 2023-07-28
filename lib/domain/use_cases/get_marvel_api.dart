@@ -15,8 +15,8 @@ class GetMarvelApi {
     return repository.getCharacters(offset: offset,name: name);
   }
 
-    Future<Either<Failure, Comics>> getComics({int? offset,String? name}) {
-    return repository.getComics(offset: offset,name: name);
+    Future<Either<Failure, Comics>> getComics({int? offset,String? name,String? dateDescriptor}) {
+    return repository.getComics(offset: offset,name: name,dateDescriptor: dateDescriptor);
   }
 
 

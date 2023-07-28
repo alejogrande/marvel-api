@@ -11,65 +11,61 @@ import 'package:marvel_api/utils/constans.dart';
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
 
-
-
   @override
   RootPageState createState() => RootPageState();
 }
 
-
 class RootPageState extends State<RootPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            backgroundColor: Colors.blue,
-            fixedColor: Colors.black,
+            backgroundColor: Colors.grey[900],
+            fixedColor: Colors.red,
+            unselectedItemColor: Colors.white,
             currentIndex: state.index,
-            showUnselectedLabels: false,
+            showUnselectedLabels: true,
             showSelectedLabels: true,
             items: [
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  Assets.comicIcon,
-                  width: 20,
-                  height: 20,
-                ),
-                activeIcon: SvgPicture.asset(
-                  Assets.comicIcon,
-                  width: 20,
-                  height: 20,
-                ),
+                icon: SvgPicture.asset(Assets.homeIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+                activeIcon: SvgPicture.asset(Assets.homeIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.red, BlendMode.srcIn)),
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  Assets.comicIcon,
-                  width: 20,
-                  height: 20,
-                ),
-                activeIcon: SvgPicture.asset(
-                  Assets.comicIcon,
-                  width: 20,
-                  height: 20,
-                ),
+                icon: SvgPicture.asset(Assets.charactersIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+                activeIcon: SvgPicture.asset(Assets.charactersIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.red, BlendMode.srcIn)),
                 label: 'Characters',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  
-                  Assets.comicIcon,
-                  width: 20,
-                  height: 20,
-                ),
-                activeIcon: SvgPicture.asset(
-                  Assets.comicIcon,
-                  width: 25,
-                  height: 25,
-                ),
+                icon: SvgPicture.asset(Assets.comicIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.white, BlendMode.srcIn)),
+                activeIcon: SvgPicture.asset(Assets.comicIcon,
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        const ColorFilter.mode(Colors.red, BlendMode.srcIn)),
                 label: 'Comics',
               ),
             ],

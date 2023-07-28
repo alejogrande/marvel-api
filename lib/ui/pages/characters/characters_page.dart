@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marvel_api/domain/entities/characters_entity.dart';
 import 'package:marvel_api/ui/pages/characters/bloc/characters_bloc.dart';
 import 'package:marvel_api/ui/pages/characters/widgets/gridview_characters.dart';
+import 'package:marvel_api/ui/widgets/appbar_custom.dart';
 import 'package:marvel_api/ui/widgets/background_custom.dart';
 
 class CharacterPage extends StatefulWidget {
@@ -23,9 +24,8 @@ class _CharacterPageState extends State<CharacterPage> {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
         if (items.length < limit) {
-          context
-              .read<CharactersBloc>()
-              .add(LoadCharacters(offset: items.length,name: _searchController.text));
+          context.read<CharactersBloc>().add(LoadCharacters(
+              offset: items.length, name: _searchController.text));
         }
       }
     });
@@ -34,36 +34,40 @@ class _CharacterPageState extends State<CharacterPage> {
   List<ResultCharacters?> items = [];
   int limit = 0;
   final ScrollController _scrollController = ScrollController();
-  final TextEditingController _searchController = TextEditingController(text:"");
+  final TextEditingController _searchController =
+      TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          context.read<CharactersBloc>().add(LoadCharacters());
-        }),
-        appBar: AppBar(
-          title: const Text("Buscador"),
-        ),
-        body: Stack(
-          children: [
-              const BackgroundCustom(),
-            Column(
+    return Stack(
+      children: [
+        const BackgroundCustom(),
+        Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: const CustomAppBar(
+              title: "CHARACTERS",
+            ),
+            body: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(20),
                   child: TextField(
                     onChanged: (value) {
-                      limit=0;
-                      items=[];
-                      context.read<CharactersBloc>().add(LoadSearchCharacters(name:value));
+                      setState(() {
+                        limit = 0;
+                        items = [];
+                      });
+
+                      context
+                          .read<CharactersBloc>()
+                          .add(LoadSearchCharacters(name: value));
                     },
                     controller: _searchController,
                     // textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      hintText: 'Buscar...',
+                      hintText: 'Search...',
                       filled: true,
-                      fillColor: Colors.green,
+                      fillColor: Colors.grey[400],
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
@@ -76,6 +80,25 @@ class _CharacterPageState extends State<CharacterPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         borderSide: BorderSide.none,
                       ),
+                      suffixIcon: _searchController.text.isNotEmpty
+                          ? IconButton(
+                              icon: const Icon(
+                                Icons.clear,
+                                color: Colors.black87,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _searchController.text = '';
+                                  limit = 0;
+                                  items = [];
+                                });
+
+                                context.read<CharactersBloc>().add(
+                                    LoadSearchCharacters(
+                                        name: _searchController.text));
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),
@@ -88,22 +111,14 @@ class _CharacterPageState extends State<CharacterPage> {
                     }
                   },
                   builder: (context, state) {
+                   
                     return GridviewCharacters(
                         items: items, controller: _scrollController);
                   },
                 )
-                // BlocBuilder<CharactersBloc, CharactersState>(
-                //   builder: (context, state) {
-
-                //     return state is CharactersHasData
-
-                //         ? GridviewCharacters(items: state.data?.data?.results)
-                //         : Container();
-                //   },
-                // ),
               ],
-            )
-          ],
-        ));
+            )),
+      ],
+    );
   }
 }

@@ -70,13 +70,17 @@ class RemoteDataSource {
       throw ServerException();
     }
   }
-    Future<Comics> getComics({int? offset, String? name}) async {
+    Future<Comics> getComics({int? offset, String? name,String? dateDescriptor}) async {
     final Map<String, dynamic> queryParams = {
       'offset': offset ?? 0,
     };
     if (name != null && name.isNotEmpty) {
       queryParams['titleStartsWith'] = name;
     }
+       if (dateDescriptor != null && dateDescriptor.isNotEmpty) {
+      queryParams['dateDescriptor'] = dateDescriptor;
+    }
+    
     final apiResponse = await _client
         .get('/comics', queryParameters: queryParams)
         .catchError((error) {

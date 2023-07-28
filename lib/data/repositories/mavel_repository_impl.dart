@@ -29,10 +29,10 @@ class MarvelRepositoryImpl implements MarvelRepository {
   }
 
   @override
-  Future<Either<Failure, Comics>> getComics({int? offset, String? name}) async {
+  Future<Either<Failure, Comics>> getComics({int? offset, String? name,String? dateDescriptor}) async {
     try {
       final result =
-          await remoteDataSource.getComics(offset: offset, name: name);
+          await remoteDataSource.getComics(offset: offset, name: name,dateDescriptor:dateDescriptor);
       return Right(result);
     } on ServerException {
       return const Left(ServerFailure(''));
